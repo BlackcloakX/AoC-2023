@@ -8,10 +8,10 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    val testInput = readInput("../resources/Day01_test")
+    check(part1(testInput) == 3)
 
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+//    val input = readInput("Day01")
+//    part1(input).println()
+//    part2(input).println()
 }
