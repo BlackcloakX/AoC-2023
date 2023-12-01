@@ -1,6 +1,6 @@
 fun main() {
     fun part1(input: List<String>): Int {
-        var result = 0;
+        var result = 0
         for(s in input){
             val first = s.first { c -> c.isDigit() }
             val last = s.last { c -> c.isDigit() }
