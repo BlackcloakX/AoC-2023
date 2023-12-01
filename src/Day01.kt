@@ -19,8 +19,8 @@ fun main() {
             val first = s.findAnyOf(numbers)
             val last = s.findLastAnyOf(numbers)
 
-            val num1: String = if(first != null) getNum(first.second) else ""
-            val num2: String = if(last != null) getNum(last.second) else ""
+            val num1: String = if(first != null) getNum(first.second) else throw NoSuchElementException()
+            val num2: String = if(last != null) getNum(last.second) else throw NoSuchElementException()
 
             result += num1.toInt() * 10 + num2.toInt()
         }
