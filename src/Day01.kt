@@ -5,7 +5,7 @@ fun main() {
             val first = s.first { c -> c.isDigit() }
             val last = s.last { c -> c.isDigit() }
 
-            result += first.toString().toInt() * 10 + last.toString().toInt()
+            result += first.digitToInt() * 10 + last.digitToInt()
         }
 
         return result
@@ -19,10 +19,10 @@ fun main() {
             val first = s.findAnyOf(numbers)
             val last = s.findLastAnyOf(numbers)
 
-            val num1: String = if(first != null) getNum(first.second) else throw NoSuchElementException()
-            val num2: String = if(last != null) getNum(last.second) else throw NoSuchElementException()
+            val num1: Int = if(first != null) getNum(first.second) else throw NoSuchElementException()
+            val num2: Int = if(last != null) getNum(last.second) else throw NoSuchElementException()
 
-            result += num1.toInt() * 10 + num2.toInt()
+            result += num1 * 10 + num2
         }
         return result
     }
@@ -37,18 +37,18 @@ fun main() {
     println(input2)
 }
 
-fun getNum(s: String): String{
+fun getNum(s: String): Int{
     return when(s){
-        "zero" -> "0"
-        "one" -> "1"
-        "two" -> "2"
-        "three" -> "3"
-        "four" -> "4"
-        "five" -> "5"
-        "six" -> "6"
-        "seven" -> "7"
-        "eight" -> "8"
-        "nine" -> "9"
-        else -> s
+        "zero", "0" -> 0
+        "one", "1" -> 1
+        "two", "2" -> 2
+        "three", "3" -> 3
+        "four", "4" -> 4
+        "five", "5" -> 5
+        "six", "6" -> 6
+        "seven", "7" -> 7
+        "eight", "8" -> 8
+        "nine", "9" -> 9
+        else -> throw IllegalArgumentException()
     }
 }
