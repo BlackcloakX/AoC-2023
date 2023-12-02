@@ -1,5 +1,4 @@
 import kotlin.math.max
-import kotlin.math.min
 
 fun main() {
     val maxRed = 12
