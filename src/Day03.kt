@@ -97,18 +97,20 @@ fun getAdjacentNumbers(input: List<String>, x: Int, y: Int): List<Int>{
             if(j < 0 || j >= input.size || i < 0 || i >= input[j].length){
                 continue
             }
-            val num = constructNumString(input[j], i)
-            if(num.isNotEmpty() && !list.contains(num.toInt())){
-                list.add(num.toInt())
+            if(input[j][i].isDigit()){
+                val num = constructNumber(input[j], i)
+                if(!list.contains(num)){
+                    list.add(num)
+                }
             }
         }
     }
 
     return list
 }
-fun constructNumString(s: String, x: Int): String{
+fun constructNumber(s: String, x: Int): Int{
     if(x >= s.length || x < 0) throw IndexOutOfBoundsException()
-    if(!s[x].isDigit()) return ""
+    //if(!s[x].isDigit()) return ""
 
     val sb = StringBuilder()
     var pos = x
@@ -122,5 +124,5 @@ fun constructNumString(s: String, x: Int): String{
         pos ++
     }
 
-    return sb.toString()
+    return sb.toString().toInt()
 }
