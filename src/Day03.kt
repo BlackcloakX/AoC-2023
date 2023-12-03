@@ -1,5 +1,3 @@
-import javax.swing.text.html.HTMLDocument.HTMLReader.CharacterAction
-
 fun main() {
     fun part1(input: List<String>): Int {
         var sum = 0
@@ -64,28 +62,28 @@ fun main() {
 
 fun hasAdjacentSymbol(input: List<String>, x: Int, y: Int): Boolean {
     if(x - 1 >= 0 && y - 1 >= 0){
-        if(input[y-1][x-1] != '.' && !input[y-1][x-1].isDigit()) return true;
+        if(input[y-1][x-1] != '.' && !input[y-1][x-1].isDigit()) return true
     }
     if(x - 1 >= 0){
-        if(input[y][x-1] != '.' && !input[y][x-1].isDigit()) return true;
+        if(input[y][x-1] != '.' && !input[y][x-1].isDigit()) return true
     }
     if(x - 1 >= 0 && y + 1 < input.size){
-        if(input[y+1][x-1] != '.' && !input[y+1][x-1].isDigit()) return true;
+        if(input[y+1][x-1] != '.' && !input[y+1][x-1].isDigit()) return true
     }
     if(y - 1 >= 0){
-        if(input[y-1][x] != '.' && !input[y-1][x].isDigit()) return true;
+        if(input[y-1][x] != '.' && !input[y-1][x].isDigit()) return true
     }
     if(y + 1 < input.size){
-        if(input[y+1][x] != '.' && !input[y+1][x].isDigit()) return true;
+        if(input[y+1][x] != '.' && !input[y+1][x].isDigit()) return true
     }
     if(x + 1 < input[y].length && y - 1 >= 0){
-        if(input[y-1][x+1] != '.' && !input[y-1][x+1].isDigit()) return true;
+        if(input[y-1][x+1] != '.' && !input[y-1][x+1].isDigit()) return true
     }
     if(x + 1 < input[y].length){
-        if(input[y][x+1] != '.' && !input[y][x+1].isDigit()) return true;
+        if(input[y][x+1] != '.' && !input[y][x+1].isDigit()) return true
     }
     if(x + 1 < input[y].length && y + 1 < input.size){
-        if(input[y+1][x+1] != '.' && !input[y+1][x+1].isDigit()) return true;
+        if(input[y+1][x+1] != '.' && !input[y+1][x+1].isDigit()) return true
     }
 
     return false
