@@ -1,5 +1,3 @@
-import kotlin.reflect.typeOf
-
 class Range(val start: Long, val range: Long) {
     val last = start + range - 1
 //    fun getLast(): Long{
