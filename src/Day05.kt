@@ -131,29 +131,30 @@ fun main() {
     }
 
     fun applyMap(
-        res: ArrayList<Range>,
-        seedMap: HashMap<Long, Mapping>,
-        tmp: ArrayList<Range>
-    ) {
+        input: ArrayList<Range>,
+        map: HashMap<Long, Mapping>
+    ): ArrayList<Range> {
+        val result = ArrayList<Range>()
         var i = 0
-        while (i < res.size) {
-            val r = res[i]
+        while (i < input.size) {
+            val r = input[i]
             var untied = true
-            for (j in seedMap.values) {
+            for (j in map.values) {
                 if (!j.isDistinct(r)) {
                     val tp = j.getOverlap(r)
-                    tmp.add(tp[0])
+                    result.add(tp[0])
                     untied = false
                     for (k in 1..<tp.size) {
-                        res.add(tp[k])
+                        input.add(tp[k])
                     }
                 }
             }
             if (untied) {
-                tmp.add(r)
+                result.add(r)
             }
             i++
         }
+        return result
     }
 
     fun part2(input: List<String>): Long {
@@ -186,24 +187,17 @@ fun main() {
         fillHashMap(tempIdx, humidIdx, input, tempMap)
         fillHashMap(humidIdx, input.size + 1, input, humidMap)
 
-        val list = ArrayList<Range>()
+        var list = ArrayList<Range>()
         for(i in 0..< seeds.size/2){
             list.add(Range(seeds[2*i], seeds[2*i+1]))
         }
 
-        var res = list
-        var tmp = ArrayList<Range>()
-        println(seeds)
-
         val mapList = listOf(seedMap, soilMap, fertMap, waterMap, lightMap, tempMap, humidMap)
-
         for(map in mapList){
-            applyMap(res, map, tmp)
-            res = tmp
-            tmp = ArrayList<Range>()
+            list = applyMap(list, map)
         }
 
-        return res.minOf { e -> e.start }
+        return list.minOf { e -> e.start }
     }
 
 
