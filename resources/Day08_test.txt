@@ -1,0 +1,19 @@
+LLR
+
+AAA = (BBB, BBB)
+BBB = (AAA, ZZZ)
+ZZZ = (ZZZ, ZZZ)
+
+var instructPos = 0
+        while(!currentPosList.all { e -> e.endsWith('Z') }){
+            if(instructions[instructPos % instructions.length] == 'L'){
+                currentPosList.map { e -> map[e].first } = map[currentPos]!!.first
+            } else{
+                currentPos = map[currentPos]!!.second
+            }
+
+            instructPos++
+        }
+
+
+        var currentPosList = map.keys.filter { e -> e.endsWith('A') }
