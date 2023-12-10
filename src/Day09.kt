@@ -7,10 +7,10 @@ fun main() {
         return getSum(input) { nums: List<Long> -> recursion2(nums) }
     }
 
-    val input = part1(readInput("../resources/Day09"))
-    val input2 = part2(readInput("../resources/Day09"))
-    println(input)
-    println(input2)
+    val output = part1(readInput("../resources/Day09"))
+    val output2 = part2(readInput("../resources/Day09"))
+    println(output)
+    println(output2)
 }
 
 fun getSum(input:List<String>, function: (nums: List<Long>) -> Long): Long{
@@ -50,8 +50,12 @@ fun getDif(input: List<Long>): List<Long>{
 }
 
 fun isAllZeroes(input: List<Long>): Boolean{
+    var b = true
     for(n in input){
-        if(n != 0L) return false
+        if(n != 0L){
+            b = false
+            break
+        }
     }
-    return true
+    return b
 }
