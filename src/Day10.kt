@@ -1,4 +1,6 @@
 fun main() {
+    // S transition needs to be entered manually in getNextPipe()/getNextPipeNoChange()
+    // If part2-result is wrong: Change S transition to the other possibility
     fun part1(input: List<String>): Int {
         val array = parseInputToArray(input)
         Pipe.setArray(array)
@@ -69,7 +71,7 @@ fun parseInputToArray(input: List<String>): ArrayList<ArrayList<Pipe>>{
 fun getStartingPosition(array: List<List<Pipe>>): Pipe{
     for(y in array.indices){
         for(x in array[y].indices){
-            if(array[y][x].pipeType == 'S') return getPipe(x, y, array,null)!!
+            if(array[y][x].pipeType == 'S') return getPipe(x, array.size - 1 - y, array,null)!!
         }
     }
     throw NoSuchElementException()
