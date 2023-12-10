@@ -79,7 +79,7 @@ fun getStartingPosition(array: List<List<Pipe>>): Pipe{
 
 data class Pipe(val x: Int, val y: Int, val pipeType: Char, var enteredFrom: Char?){
     fun getNextPipe(): Pipe{
-        return when(val type = getPipe(x, y, arr, null)!!.pipeType){
+        return when(val type = pipeType){
             'J' -> if(enteredFrom == 'W') getPipe(x,y+1,arr,'S')!! else getPipe(x-1, y, arr, 'E')!!
             'L' -> if(enteredFrom == 'N') getPipe(x+1,y,arr,'W')!! else getPipe(x, y+1, arr, 'S')!!
             'F' -> if(enteredFrom == 'E') getPipe(x,y-1,arr,'N')!! else getPipe(x+1, y, arr, 'W')!!
@@ -92,8 +92,7 @@ data class Pipe(val x: Int, val y: Int, val pipeType: Char, var enteredFrom: Cha
     }
 
     fun getNextPipeNoChange(): Pipe?{
-        return when(val type = getPipe(x, y, arr, null)?.pipeType){
-            null -> null
+        return when(val type = pipeType){
             'J' -> if(enteredFrom == 'W') getPipe(x,y+1,arr,null) else getPipe(x-1, y, arr, null)
             'L' -> if(enteredFrom == 'N') getPipe(x+1,y,arr,null) else getPipe(x, y+1, arr, null)
             'F' -> if(enteredFrom == 'E') getPipe(x,y-1,arr,null) else getPipe(x+1, y, arr, null)
