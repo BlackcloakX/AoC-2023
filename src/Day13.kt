@@ -34,17 +34,17 @@ fun main() {
             val array = parseToUniverseArray(it)
             val array_T = transpose(array)
             for(y in 0..<array.size-1){
-                if(compareSmudgedLines(y, y+1, array)){
+                if(compareSmudgedLines(y, y+1, array, 0)){
                     listRows.add(y+1)
                 }
             }
             for(y in 0..<array_T.size-1){
-                if(compareSmudgedLines(y, y+1, array_T)){
+                if(compareSmudgedLines(y, y+1, array_T, 0)){
                     listCols.add(y+1)
                 }
             }
         }
-        return listCols.sum() + 100 * listRows.sum() - part1(input)
+        return listCols.sum() + 100 * listRows.sum()
     }
 
 
@@ -59,10 +59,22 @@ fun compareLines(line1: Int, line2: Int, array: List<List<Char>>): Boolean{
     return compareLines(line1-1, line2+1, array)
 }
 
-fun compareSmudgedLines(index1: Int, index2: Int, array: List<List<Char>>): Boolean{
-    if(index1 < 0 || index2 >= array.size) return true
-    if(!almostMatch(array[index1], array[index2])) return false
-    return compareSmudgedLines(index1-1, index2+1, array)
+fun compareSmudgedLines(index1: Int, index2: Int, array: List<List<Char>>, faults: Int): Boolean{
+    if(faults > 1) return false
+    if(index1 < 0 || index2 >= array.size) return faults == 1
+    if(!exactMatch(array[index1], array[index2]) && !almostMatch(array[index1], array[index2])) return false
+
+    return compareSmudgedLines(index1-1, index2+1, array, if(almostMatch(array[index1], array[index2])) faults + 1 else faults)
+}
+
+fun exactMatch(line1: List<Char>, line2: List<Char>): Boolean{
+    var difs = 0
+
+    for(i in line1.indices){
+        if(line1[i] != line2[i]) difs++
+    }
+
+    return difs == 0
 }
 
 fun almostMatch(line1: List<Char>, line2: List<Char>): Boolean{
@@ -72,7 +84,7 @@ fun almostMatch(line1: List<Char>, line2: List<Char>): Boolean{
         if(line1[i] != line2[i]) difs++
     }
 
-    return difs == 1 || difs == 0
+    return difs == 1
 }
 
 fun findEmptyLines(input: List<String>): List<Int>{
