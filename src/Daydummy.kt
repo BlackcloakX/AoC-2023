@@ -8,8 +8,8 @@ fun main() {
     }
 
 
-    val input = part1(readInput("../resources/Day03"))
-    val input2 = part2(readInput("../resources/Day03"))
-    println(input)
-    println(input2)
+    val output = part1(readInput("../resources/Day03"))
+    val output2 = part2(readInput("../resources/Day03"))
+    println(output)
+    println(output2)
 }
