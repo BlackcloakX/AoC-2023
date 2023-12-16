@@ -58,7 +58,7 @@ fun main() {
     println(1000 % 9)
 }
 
-private enum class Direction{
+enum class Direction{
     NORTH, WEST, SOUTH, EAST;
 }
 
